@@ -2,13 +2,27 @@
 <html>
   <head>
     <title>leadstaq</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Leadstaq</h1>
-    <input id="search-box" type="text"> 
-    <span id="search-btn">Search</span>
-    <div id="tweets"></div>
+    <h1>leadstaq</h1>
+    <div class="container">
+      <div class="row">
+        <input id="search-box" type="text"> 
+        <span id="search-btn">Search</span>
+      </div>
+
+      <div class="row">
+        <div class="col-md-7">
+          <div id="tweets"></div>
+        </div>
+        <div class="col-md-5">
+          <h3>Added</h3>
+          <div id="added"></div>
+        </div>
+      </div>
+    </div>
 
     <script src="/javascripts/jquery-1.10.2.min.js"></script>
     <script src="/javascripts/ejs.js"></script>

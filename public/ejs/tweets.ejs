@@ -1,3 +1,7 @@
       <% for(var i = 0; i < tweets.length; i++) { %>
-      <div><%= tweets[i].text %></div>
+      <div class="tweet">
+        <div><a class="username" href="http://twitter.com/<%= tweets[i].user.screen_name %>" target="_blank"><%= tweets[i].user.name %></a> - <span class="add-btn">Add</span></div>
+        <div class="description"><%= tweets[i].user.description %></div>
+        <div><%= tweets[i].text %></div>
+      </div>
       <% } %>
