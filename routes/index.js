@@ -1,7 +1,5 @@
 var Twit = require('twit');
 
-console.log(process.env.TWITTER_API_KEY)
-
 var Twitter = new Twit({
   consumer_key: process.env.TWITTER_API_KEY,
   consumer_secret: process.env.TWITTER_API_SECRET,
@@ -15,7 +13,11 @@ var Twitter = new Twit({
  */
 
 exports.index = function(req, res){
-  Twitter.get('search/tweets', { q: "startups", count: 100 }, function(err, reply) {
-  res.render('index', { tweets: reply });
-  });
+  res.render('index');
 };
+
+exports.twittersearch = function(req, res) {
+  Twitter.get('search/tweets', { q: req.params.query, count: 100 }, function(err, reply) {
+    res.send(reply);
+  });
+}

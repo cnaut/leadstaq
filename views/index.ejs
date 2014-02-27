@@ -6,11 +6,12 @@
   </head>
   <body>
     <h1>Leadstaq</h1>
-    <input type="text">
-    <div>
-      <% for(var i = 0; i < tweets.statuses.length; i++) { %>
-      <div><%= tweets.statuses[i].text %></div>
-      <% } %>
-    </div>
+    <input id="search-box" type="text"> 
+    <span id="search-btn">Search</span>
+    <div id="tweets"></div>
+
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="/javascripts/ejs.js"></script>
+    <script src="/javascripts/index.js"></script>
   </body>
 </html>
