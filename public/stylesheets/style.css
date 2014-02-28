@@ -10,3 +10,10 @@ a {
 .tweet {
   padding: 7px;
 }
+
+.user {
+  border-color: grey;
+  border-width: 3px;
+  border-style: solid;
+  padding: 5px;
+}

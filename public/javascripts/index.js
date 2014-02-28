@@ -9,7 +9,7 @@ $(function() {
   });
 
   $("#tweets").on('click', ".add-btn", function() {
-    var tweetDiv = $(this).parent().parent();
+    var tweetDiv = $(this).parent().parent().parent();
     tweetDiv.hide();
     var name = tweetDiv.find(".username").html();
     var handle = tweetDiv.find(".username").attr("href");
