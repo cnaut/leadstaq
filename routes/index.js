@@ -21,3 +21,11 @@ exports.twittersearch = function(req, res) {
     res.send(reply);
   });
 }
+
+exports.twitterdm = function(req, res) {
+  Twitter.post( 'direct_messages/new', { screen_name: "richardjlo", text: "hihi" }, function(err, reply) {
+    console.log(err);
+    console.log(reply);
+    res.send(reply);
+  });
+}

@@ -16,4 +16,10 @@ $(function() {
     var description = tweetDiv.find(".description").html();
     $("#added").append("<tr><td>" + name + "</td><td>" + handle + "</td><td>" + description + "</td></tr>");
   });
+
+  $("#send-btn").click(function() {
+    $.ajax({
+      url: "/twitterdm",
+    });
+  });
 });
