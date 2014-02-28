@@ -1,4 +1,6 @@
 $(function() {
+  var handles = [];
+
   $("#search-btn").click(function() {
     $.ajax({
       url: "/twittersearch/" + $("#search-box").val(),
@@ -10,16 +12,25 @@ $(function() {
 
   $("#tweets").on('click', ".add-btn", function() {
     var tweetDiv = $(this).parent().parent().parent();
-    tweetDiv.hide();
     var name = tweetDiv.find(".username").html();
-    var handle = tweetDiv.find(".username").attr("href");
+    var handle = tweetDiv.find(".username").attr("handle");
+    var link = tweetDiv.find(".username").attr("href");
     var description = tweetDiv.find(".description").html();
-    $("#added").append("<tr><td>" + name + "</td><td>" + handle + "</td><td>" + description + "</td></tr>");
+    
+    tweetDiv.hide();
+    handles.push(handle);
+    $("#added").append("<tr><td>" + name + "</td><td>" + link + "</td><td>" + description + "</td></tr>");
   });
 
   $("#send-btn").click(function() {
     $.ajax({
-      url: "/twitterdm",
+      type: "POST",
+      url: "/twittertweet",
+      dataType: "json",
+      data: { handles: JSON.stringify(handles) },
+      success: function(response) {
+        console.log(response);
+      }
     });
   });
 });

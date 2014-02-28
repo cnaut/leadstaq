@@ -22,10 +22,17 @@ exports.twittersearch = function(req, res) {
   });
 }
 
-exports.twitterdm = function(req, res) {
-  Twitter.post( 'direct_messages/new', { screen_name: "richardjlo", text: "hihi" }, function(err, reply) {
-    console.log(err);
-    console.log(reply);
-    res.send(reply);
-  });
+exports.twittertweet = function(req, res) {
+  var handles = JSON.parse(req.body.handles);
+  for(var i = 0; i < handles.length; i++) {
+    Twitter.post( 'statuses/update', { status: "@" + handles[i] + " I'm testing out a new startup idea and would love to get your feedback. Quick survey here: http://bit.ly/1mJsX0X"  }, function(err, reply) {
+      if(err) {
+        console.log(err);
+        res.send(err);
+      }
+      else {
+        res.send(reply);
+      }
+    });
+  }
 }

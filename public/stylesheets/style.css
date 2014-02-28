@@ -17,3 +17,8 @@ a {
   border-style: solid;
   padding: 5px;
 }
+
+#added-btn {
+  display: inline;
+  padding-right: 10px;
+}
