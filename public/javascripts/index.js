@@ -27,7 +27,7 @@ $(function() {
       type: "POST",
       url: "/twittertweet",
       dataType: "json",
-      data: { handles: JSON.stringify(handles) },
+      data: { handles: JSON.stringify(handles), message: $("#message").val()},
       success: function(response) {
         console.log(response);
       }

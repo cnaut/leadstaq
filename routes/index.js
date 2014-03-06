@@ -31,7 +31,7 @@ exports.twittersearch = function(req, res) {
 exports.twittertweet = function(req, res) {
   var handles = JSON.parse(req.body.handles);
   for(var i = 0; i < handles.length; i++) {
-    Twitter.post( 'statuses/update', { status: "@" + handles[i] + " I'm testing out a new startup idea and would love to get your feedback. Quick survey here: http://bit.ly/1mJsX0X"  }, function(err, reply) {
+    Twitter.post( 'statuses/update', { status: "@" + handles[i] + " " + req.body.message  }, function(err, reply) {
       if(err) {
         console.log(err);
         res.send(err);
