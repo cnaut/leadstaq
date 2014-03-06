@@ -10,7 +10,7 @@ var Twitter = new Twit({
 });
 
 exports.index = function(req, res){
-  request.post({url:'https://api.twitter.com/oauth/request_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, token: process.env.TWITTER_ACCESS_TOKEN, verifier: process.env.TWITTER_ACCESS_TOKEN_SECRET, callback: 'http://localhost:3000/search'}}, function(err, response, body) {
+  request.post({url:'https://api.twitter.com/oauth/request_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, token: process.env.TWITTER_ACCESS_TOKEN, verifier: process.env.TWITTER_ACCESS_TOKEN_SECRET, callback: process.env.TWITTER_CALLBACK }}, function(err, response, body) {
     var token = qs.parse(body);
     res.render('index', {token: token.oauth_token});
   });
