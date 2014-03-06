@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/search', routes.search);
 app.get('/twittersearch/:query?', routes.twittersearch);
 app.post('/twittertweet', routes.twittertweet);
 app.get('/users', user.list);

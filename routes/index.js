@@ -7,14 +7,15 @@ var Twitter = new Twit({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-
-/*
- * GET home page.
- */
-
 exports.index = function(req, res){
   res.render('index');
 };
+
+
+exports.search = function(req, res){
+  res.render('search');
+};
+
 
 exports.twittersearch = function(req, res) {
   Twitter.get('search/tweets', { q: req.params.query, count: 100 }, function(err, reply) {
