@@ -1,4 +1,6 @@
 var Twit = require('twit');
+var request = require('request');
+var qs = require('querystring');
 
 var Twitter = new Twit({
   consumer_key: process.env.TWITTER_API_KEY,
@@ -8,7 +10,10 @@ var Twitter = new Twit({
 });
 
 exports.index = function(req, res){
-  res.render('index');
+  request.post({url:'https://api.twitter.com/oauth/request_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, token: process.env.TWITTER_ACCESS_TOKEN, verifier: process.env.TWITTER_ACCESS_TOKEN_SECRET, callback: 'http://localhost:3000/search'}}, function(err, response, body) {
+    var token = qs.parse(body);
+    res.render('index', {token: token.oauth_token});
+  });
 };
 
 
