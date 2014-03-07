@@ -23,6 +23,10 @@ exports.search = function(req, res){
 
 
 exports.twittersearch = function(req, res) {
+  var body = qs.parse(req.body);
+  var token = body.oauth_token;
+  var tokenSecret = body.oauth_verifier;
+  Twitter.setAuth({access_token: token, access_token_secret: tokenSecret});
   Twitter.get('search/tweets', { q: req.params.query, count: 100 }, function(err, reply) {
     res.send(reply);
   });
