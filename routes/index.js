@@ -10,7 +10,7 @@ var Twitter = new Twit({
 });
 
 exports.index = function(req, res){
-  request.post({url:'https://api.twitter.com/oauth/request_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, token: process.env.TWITTER_ACCESS_TOKEN, verifier: process.env.TWITTER_ACCESS_TOKEN_SECRET, callback: process.env.TWITTER_CALLBACK }}, function(err, response, body) {
+  request.post({url:'https://api.twitter.com/oauth/request_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, callback: process.env.TWITTER_CALLBACK }}, function(err, response, body) {
     var token = qs.parse(body);
     res.render('index', {token: token.oauth_token});
   });
@@ -18,15 +18,18 @@ exports.index = function(req, res){
 
 
 exports.search = function(req, res){
-  res.render('search');
+  var oauthToken  = req.param("oauth_token");
+  var oauthVerifier = req.param("oauth_verifier");
+  request.post({url:'https://api.twitter.com/oauth/access_token', oauth: {consumer_key: process.env.TWITTER_API_KEY, consumer_secret: process.env.TWITTER_API_SECRET, token: oauthToken, verifier: oauthVerifier  }}, function(err, response, body) {
+    var token = qs.parse(body);
+    console.log(token)
+    Twitter.setAuth({access_token: token.oauth_token, access_token_secret: token.oauth_token_secret});
+    res.render('search');
+  });
 };
 
 
 exports.twittersearch = function(req, res) {
-  var body = qs.parse(req.body);
-  var token = body.oauth_token;
-  var tokenSecret = body.oauth_verifier;
-  Twitter.setAuth({access_token: token, access_token_secret: tokenSecret});
   Twitter.get('search/tweets', { q: req.params.query, count: 100 }, function(err, reply) {
     res.send(reply);
   });
