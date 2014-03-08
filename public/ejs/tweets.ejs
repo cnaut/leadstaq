@@ -1,10 +1,15 @@
       <% for(var i = 0; i < tweets.length; i++) { %>
       <div class="tweet">
-        <div class="user">
-          <div><a class="username" href="http://twitter.com/<%= tweets[i].user.screen_name %>" handle="<%= tweets[i].user.screen_name %>" target="_blank"><%= tweets[i].user.name %></a> - <span class="add-btn">Add</span></div>
-          <div class="description"><%= tweets[i].user.description %></div>
+        <div class="row"><%= tweets[i].text %></div>
+        <div class="row user">
+          <div class="col-lg-1"><img src="<%= tweets[i].user.profile_image_url %>" /></div>
+          <div class="col-lg-11">
+            <div><a class="username" href="http://twitter.com/<%= tweets[i].user.screen_name %>" handle="<%= tweets[i].user.screen_name %>" target="_blank"><%= tweets[i].user.name %></a></div>
+
+            <div class="description"><%= tweets[i].user.description %></div>
+            <div><button type="button" class="add-btn">Add</button></div>
+          </div>
         </div>
-        <div><%= tweets[i].text %></div>
         <hr />
       </div>
       <% } %>

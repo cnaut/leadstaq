@@ -11,7 +11,7 @@ $(function() {
   });
 
   $("#tweets").on('click', ".add-btn", function() {
-    var tweetDiv = $(this).parent().parent().parent();
+    var tweetDiv = $(this).parent().parent().parent().parent();
     var name = tweetDiv.find(".username").html();
     var handle = tweetDiv.find(".username").attr("handle");
     var link = tweetDiv.find(".username").attr("href");
